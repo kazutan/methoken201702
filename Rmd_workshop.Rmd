@@ -19,6 +19,12 @@ knitr::opts_chunk$set(echo = TRUE)
 library(DiagrammeR)
 ```
 
+```{css}
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic);
+body{
+font-family:Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+}
+```
 
 # はじめに
 
@@ -467,4 +473,165 @@ library(zousan)
 `r ''````
 ````
 
+# yamlヘッダ
+
+## yamlヘッダの基本
+
+<div class="column1">
+- ドキュメントの全体的な設定など記述
+- yaml記法で記述
+    - 左のスペース、重要
+    - 多分感覚をつかむまでは、見様見真似でやっていったほうがいいです
+</div>
+<div class="column2">
+```
+---
+title: "Untitled"
+author: "kazutan"
+date: "2017年2月17日"
+output: html_document
+---
+```
+
+## 標準で入る項目
+
+<div class="column1">
+- `Title: `はドキュメントのタイトル
+- `author: `は名前
+- `date: `は日にち
+- `output: `は出力形式に関して
+    - ここで出力を指定・設定
+    - まずはここでいろいろ試しましょう
+</div>
+<div class="column2">
+```
+---
+title: "Untitled"
+author: "kazutan"
+date: "2017年2月17日"
+output: html_document
+---
+```
+</div>
+
+## 練習: tocを有効にする
+
+<div class="column1">
+- Rmdファイルを新規作成
+- 冒頭のyamlヘッダを編集
+    - output部分を右のように変更
+    - スペース2個分で段差をつける
+- knitして出力されたファイルを確認
+</div>
+<div class="column2">
+```
+---
+(省略)
+output:
+  html_document:
+    toc: true
+---
+```
+</div>
+
+## 練習: floating tocを有効にする
+
+<div class="column1">
+- 冒頭のyamlヘッダを編集
+    - output部分を右のように変更
+- knitして出力されたファイルを確認
+</div>
+<div class="column2">
+```
+---
+(省略)
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+```
+</div>
+
+## toc関連の設定項目
+
+<div class="column1">
+- toc: 見出しリスト作成。論理値。
+- toc_depth: tocで拾ってくる見出しレベルの指定。数値。
+- toc_float: tocをサイドメニューとして浮かせて表示させるか。論理値
+- number_section: 見出しに通し番号を自動付与させるか。論理値。
+</div>
+<div class="column2">
+```
+---
+(省略)
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    number_section: true
+---
+```
+</div>
+
+## 出力まわり
+
+<div class="column1">
+- keep_md: knitした時に途中で作成されるMarkdownをファイルとして残すかどうか。論理値。
+- self_contained: 出力されるhtmlファイルに、画像やcssファイル、あるいはjsファイルなどを組み込んでしまい、htmlファイル単独でも表示できるようにするか。論理値。
+</div>
+<div class="column2">
+```
+---
+(省略)
+output:
+  html_document:
+    keep_md: true
+    self_contained: true
+---
+```
+</div>
+
+***
+
+<div class="column1">
+- md_extentions: Pandoc Markdown拡張で追加and/or削除する要素を指定。
+    - 日本語見出しを使う場合、重要になります
+- pandoc_args: Pandocに送る引数を指定。
+    - revealjsスライドを使う場合、重要になります
+</div>
+<div class="column2">
+```
+---
+(省略)
+output:
+  html_document:
+    md_extentions: NULL
+    pandoc_args: NULL
+---
+```
+</div>
+
+## その他の設定項目について
+
+- html_documentで使える項目一覧は以下にまとめました:
+    - [R Markdownのhtml_documentで指定できるyamlヘッダ項目について](http://qiita.com/kazutan/items/726e03dfcef1615ae999)
+- その他、以下の資料を参考にしてください:
+    - [R Markdownチートシート(日本語版, pdf)](https://www.rstudio.com/wp-content/uploads/2016/11/Rmarkdown-cheatsheet-2.0_ja.pdf)
+    - [R Markdownのhtml documentの解説ページ](http://rmarkdown.rstudio.com/html_document_format.html)
+
+
 # R Markdownでスライド生成
+
+## なぜR Markdownでスライドを作るのか?
+
+## ioslidesで作成
+
+## revealjsパッケージで作成
+
+
+# FAQ
+
+
+# 次のステップに進むには?

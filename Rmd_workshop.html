@@ -8,11 +8,11 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="Rmd_workshop_files/reveal.js-3.3.0/css/reveal.css"/>
+  <link rel="stylesheet" href="Rmd_workshop_files/reveal.js-3.3.0.1/css/reveal.css"/>
 
 
 
-<link rel="stylesheet" href="Rmd_workshop_files/reveal.js-3.3.0/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="Rmd_workshop_files/reveal.js-3.3.0.1/css/theme/sky.css" id="theme">
 
 
   <!-- some tweaks to reveal css -->
@@ -55,22 +55,394 @@
       border-color: gray;
     }
 
+
   </style>
 
     <style type="text/css">code{white-space: pre;}</style>
 
     <link rel="stylesheet" href="for-revealjs.css"/>
-    <!-- Printing and PDF exports -->
-    <script>
-      var link = document.createElement( 'link' );
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = window.location.search.match( /print-pdf/gi ) ? 'Rmd_workshop_files/reveal.js-3.3.0/css/print/pdf.css' : 'Rmd_workshop_files/reveal.js-3.3.0/css/print/paper.css';
-      document.getElementsByTagName( 'head' )[0].appendChild( link );
-    </script>
-    <!--[if lt IE 9]>
-    <script src="Rmd_workshop_files/reveal.js-3.3.0/lib/js/html5shiv.js"></script>
-    <![endif]-->
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
 
 </head>
 <body>
@@ -83,6 +455,15 @@
     <h2 class="author">前田 和寛</h2>
 </section>
 
+<section class="slide level2">
+
+<style type="text/css">
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic);
+body{
+font-family:Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
+}
+</style>
+</section>
 <section><section id="はじめに" class="titleslide slide level1"><h1>はじめに</h1></section><section id="自己紹介" class="slide level2">
 <h1>自己紹介</h1>
 <div class="column1">
@@ -180,7 +561,7 @@
 </ul></li>
 </ul></li>
 </ul>
-<p><img src="Rmd_workshop_files/figure-revealjs/unnamed-chunk-1-1.png" width="768" /></p>
+<p><img src="Rmd_workshop_files/figure-revealjs/unnamed-chunk-2-1.png" width="768" /></p>
 </section><section id="ワークフロー" class="slide level2">
 <h1>ワークフロー</h1>
 <ol type="1">
@@ -506,13 +887,248 @@ head(iris)
 <div class="column2">
 <p><img src="pics/Rmd/rchunk_output.png" /></p>
 </div>
+</section><section id="rチャンクの基本" class="slide level2">
+<h1>Rチャンクの基本</h1>
+<ul>
+<li>Rチャンクはいくつでも設置可
+<ul>
+<li>チャンクに名前をつけることも可能</li>
+<li>結構詳細にオプションを設定可能</li>
+<li>Rオブジェクトを引き継ぐことも可能</li>
+</ul></li>
+<li>通常と(ほぼ)同じようにRが使える
+<ul>
+<li>パッケージ読み込みやファイルへのアクセス</li>
+</ul></li>
+<li>コードのみを実行可能
+<ul>
+<li>コードのみを実行すると<code>Global Envirnment</code>に</li>
+<li>Knitした場合，別のEnvironmentで実行される</li>
+<li>cacheしておくことも可能(今回は省略)</li>
+</ul></li>
+</ul>
+</section><section id="rチャンク-オプション" class="slide level2">
+<h1>Rチャンク オプション</h1>
+<ul>
+<li>そのRチャンクでの設定を記述
+<ul>
+<li>設定項目はたくさんある</li>
+<li>そのあたりはリファレンスを参照</li>
+<li>以下、絶対覚えるべきものだけ紹介</li>
+</ul></li>
+</ul>
+<pre><code>```{r chank-name, eval=TRUE}
+head(iris)
+```</code></pre>
+</section><section id="echoコード部の表示非表示" class="slide level2">
+<h1>echo(コード部の表示・非表示)</h1>
+<ul>
+<li>Rのチャンクコードを表示させるかどうか
+<ul>
+<li><code>echo=FALSE</code>で非表示</li>
+<li>あくまで表示に関することだけ</li>
+<li>コード評価をするかどうかは影響しない</li>
+</ul></li>
+</ul>
+<pre><code>```{r, echo=FALSE}
+head(iris)
+```</code></pre>
+</section><section id="evalコード部の評価非評価" class="slide level2">
+<h1>eval(コード部の評価・非評価)</h1>
+<ul>
+<li>Rチャンクのコードを評価するかしないか
+<ul>
+<li><code>eval=FALSE</code>で非評価</li>
+</ul></li>
+</ul>
+<pre><code>```{r, eval=FALSE}
+head(iris)
+```</code></pre>
+</section><section id="includeレポートに組み込むか否か" class="slide level2">
+<h1>include(レポートに組み込むか否か)</h1>
+<ul>
+<li>Rチャンクをレポートに組み込むかどうか
+<ul>
+<li><code>include=FALSE</code>でレポートから除外</li>
+<li>でもコードは評価されます</li>
+<li>セットアップとか前処理とかパッケージ読み込みとかで重宝</li>
+</ul></li>
+</ul>
+<pre><code>```{r, include=FALSE}
+library(zousan)
+```</code></pre>
 </section></section>
-<section><section id="r-markdownでスライド生成" class="titleslide slide level1"><h1>R Markdownでスライド生成</h1></section></section>
+<section><section id="yamlヘッダ" class="titleslide slide level1"><h1>yamlヘッダ</h1></section><section id="yamlヘッダの基本" class="slide level2">
+<h1>yamlヘッダの基本</h1>
+<div class="column1">
+<ul>
+<li>ドキュメントの全体的な設定など記述</li>
+<li>yaml記法で記述
+<ul>
+<li>左のスペース、重要</li>
+<li>多分感覚をつかむまでは、見様見真似でやっていったほうがいいです</li>
+</ul></li>
+</ul>
+</div>
+<div class="column2">
+<pre><code>---
+title: &quot;Untitled&quot;
+author: &quot;kazutan&quot;
+date: &quot;2017年2月17日&quot;
+output: html_document
+---</code></pre>
+</section><section id="標準で入る項目" class="slide level2">
+<h1>標準で入る項目</h1>
+<div class="column1">
+<ul>
+<li><code>Title:</code>はドキュメントのタイトル</li>
+<li><code>author:</code>は名前</li>
+<li><code>date:</code>は日にち</li>
+<li><code>output:</code>は出力形式に関して
+<ul>
+<li>ここで出力を指定・設定</li>
+<li>まずはここでいろいろ試しましょう</li>
+</ul></li>
+</ul>
+</div>
+<div class="column2">
+<pre><code>---
+title: &quot;Untitled&quot;
+author: &quot;kazutan&quot;
+date: &quot;2017年2月17日&quot;
+output: html_document
+---</code></pre>
+</div>
+</section><section id="練習-tocを有効にする" class="slide level2">
+<h1>練習: tocを有効にする</h1>
+<div class="column1">
+<ul>
+<li>Rmdファイルを新規作成</li>
+<li>冒頭のyamlヘッダを編集
+<ul>
+<li>output部分を右のように変更</li>
+<li>スペース2個分で段差をつける</li>
+</ul></li>
+<li>knitして出力されたファイルを確認</li>
+</ul>
+</div>
+<div class="column2">
+<pre><code>---
+(省略)
+output:
+  html_document:
+    toc: true
+---</code></pre>
+</div>
+</section><section id="練習-floating-tocを有効にする" class="slide level2">
+<h1>練習: floating tocを有効にする</h1>
+<div class="column1">
+<ul>
+<li>冒頭のyamlヘッダを編集
+<ul>
+<li>output部分を右のように変更</li>
+</ul></li>
+<li>knitして出力されたファイルを確認</li>
+</ul>
+</div>
+<div class="column2">
+<pre><code>---
+(省略)
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---</code></pre>
+</div>
+</section><section id="toc関連の設定項目" class="slide level2">
+<h1>toc関連の設定項目</h1>
+<div class="column1">
+<ul>
+<li>toc: 見出しリスト作成。論理値。</li>
+<li>toc_depth: tocで拾ってくる見出しレベルの指定。数値。</li>
+<li>toc_float: tocをサイドメニューとして浮かせて表示させるか。論理値</li>
+<li>number_section: 見出しに通し番号を自動付与させるか。論理値。</li>
+</ul>
+</div>
+<div class="column2">
+<pre><code>---
+(省略)
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    number_section: true
+---</code></pre>
+</div>
+</section><section id="出力まわり" class="slide level2">
+<h1>出力まわり</h1>
+<div class="column1">
+<ul>
+<li>keep_md: knitした時に途中で作成されるMarkdownをファイルとして残すかどうか。論理値。</li>
+<li>self_contained: 出力されるhtmlファイルに、画像やcssファイル、あるいはjsファイルなどを組み込んでしまい、htmlファイル単独でも表示できるようにするか。論理値。</li>
+</ul>
+</div>
+<div class="column2">
+<pre><code>---
+(省略)
+output:
+  html_document:
+    keep_md: true
+    self_contained: true
+---</code></pre>
+</div>
+</section><section class="slide level2">
+
+<div class="column1">
+<ul>
+<li>md_extentions: Pandoc Markdown拡張で追加and/or削除する要素を指定。
+<ul>
+<li>日本語見出しを使う場合、重要になります</li>
+</ul></li>
+<li>pandoc_args: Pandocに送る引数を指定。
+<ul>
+<li>revealjsスライドを使う場合、重要になります</li>
+</ul></li>
+</ul>
+</div>
+<div class="column2">
+<pre><code>---
+(省略)
+output:
+  html_document:
+    md_extentions: NULL
+    pandoc_args: NULL
+---</code></pre>
+</div>
+</section><section id="その他の設定項目について" class="slide level2">
+<h1>その他の設定項目について</h1>
+<ul>
+<li>html_documentで使える項目一覧は以下にまとめました:
+<ul>
+<li><a href="http://qiita.com/kazutan/items/726e03dfcef1615ae999">R Markdownのhtml_documentで指定できるyamlヘッダ項目について</a></li>
+</ul></li>
+<li>その他、以下の資料を参考にしてください:
+<ul>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2016/11/Rmarkdown-cheatsheet-2.0_ja.pdf">R Markdownチートシート(日本語版, pdf)</a></li>
+<li><a href="http://rmarkdown.rstudio.com/html_document_format.html">R Markdownのhtml documentの解説ページ</a></li>
+</ul></li>
+</ul>
+</section></section>
+<section><section id="r-markdownでスライド生成" class="titleslide slide level1"><h1>R Markdownでスライド生成</h1></section><section id="なぜr-markdownでスライドを作るのか" class="slide level2">
+<h1>なぜR Markdownでスライドを作るのか?</h1>
+</section><section id="ioslidesで作成" class="slide level2">
+<h1>ioslidesで作成</h1>
+</section><section id="revealjsパッケージで作成" class="slide level2">
+<h1>revealjsパッケージで作成</h1>
+</section></section>
+<section><section id="faq" class="titleslide slide level1"><h1>FAQ</h1></section></section>
+<section><section id="次のステップに進むには" class="titleslide slide level1"><h1>次のステップに進むには?</h1></section></section>
     </div>
   </div>
 
-  <script src="Rmd_workshop_files/reveal.js-3.3.0/lib/js/head.min.js"></script>
-  <script src="Rmd_workshop_files/reveal.js-3.3.0/js/reveal.js"></script>
+  <script src="Rmd_workshop_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="Rmd_workshop_files/reveal.js-3.3.0.1/js/reveal.js"></script>
 
   <script>
 
@@ -527,6 +1143,7 @@ head(iris)
         transition: 'default', // none/fade/slide/convex/concave/zoom
         // Transition style for full page slide backgrounds
         backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
 
 
         // Optional reveal.js plugins
