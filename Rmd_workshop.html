@@ -11,6 +11,43 @@
   <link rel="stylesheet" href="Rmd_workshop_files/reveal.js-3.3.0.1/css/reveal.css"/>
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 <link rel="stylesheet" href="Rmd_workshop_files/reveal.js-3.3.0.1/css/theme/sky.css" id="theme">
 
@@ -455,15 +492,6 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <h2 class="author">前田 和寛</h2>
 </section>
 
-<section class="slide level2">
-
-<style type="text/css">
-@import url(//fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic);
-body{
-font-family:Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
-}
-</style>
-</section>
 <section><section id="はじめに" class="titleslide slide level1"><h1>はじめに</h1></section><section id="自己紹介" class="slide level2">
 <h1>自己紹介</h1>
 <div class="column1">
@@ -561,7 +589,7 @@ font-family:Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdan
 </ul></li>
 </ul></li>
 </ul>
-<p><img src="Rmd_workshop_files/figure-revealjs/unnamed-chunk-2-1.png" width="768" /></p>
+<p><img src="Rmd_workshop_files/figure-revealjs/unnamed-chunk-1-1.png" width="768" /></p>
 </section><section id="ワークフロー" class="slide level2">
 <h1>ワークフロー</h1>
 <ol type="1">
@@ -1117,13 +1145,394 @@ output:
 </section></section>
 <section><section id="r-markdownでスライド生成" class="titleslide slide level1"><h1>R Markdownでスライド生成</h1></section><section id="なぜr-markdownでスライドを作るのか" class="slide level2">
 <h1>なぜR Markdownでスライドを作るのか?</h1>
-</section><section id="ioslidesで作成" class="slide level2">
-<h1>ioslidesで作成</h1>
+<ul>
+<li>先述したドキュメント生成のメリットは共通</li>
+<li>スライドはアウトラインから起こすと作りやすい
+<ul>
+<li>セクション、各スライドタイトル、コンテンツで構成</li>
+<li>シンプルなルールがそのまま適用できる</li>
+</ul></li>
+<li>レイアウトやテーマ要素をいちいち考えなくていい
+<ul>
+<li>ごてごてしたレイアウト、本当に必要?</li>
+<li>テーマはスライドで共通してるから全体設定すればOK</li>
+</ul></li>
+</ul>
+</section><section id="スライド作成のバリエーション" class="slide level2">
+<h1>スライド作成のバリエーション</h1>
+<ul>
+<li>R Presentation
+<ul>
+<li>RStudioに組み込まれたものでreveal.jsがベース</li>
+<li><strong>現状あまりおすすめしにくい</strong></li>
+</ul></li>
+<li>ioslides
+<ul>
+<li>rmarkdown標準で組み込み。結構きれい</li>
+</ul></li>
+<li>slidy
+<ul>
+<li>rmarkdown標準で組み込み。いまいち</li>
+</ul></li>
+<li>beamer
+<ul>
+<li>てふにしゃん御用達でpdfファイル形式</li>
+</ul></li>
+<li>{revealjs}パッケージ
+<ul>
+<li>多機能、デザイン豊富、カスタマイズしやすい</li>
+<li>このスライドもこれで作ってます</li>
+</ul></li>
+</ul>
+</section><section id="rmdでスライドを作るには" class="slide level2">
+<h1>Rmdでスライドを作るには</h1>
+<p>以下のワークフローで進めます:</p>
+<ol type="1">
+<li>スライド用のRmdファイルを新規で作成</li>
+<li>内容を編集</li>
+<li>knitして確認</li>
+<li>2と3を繰り返す</li>
+<li>完成</li>
+</ol>
+<p>ほぼドキュメントのときと違いませんが、どれで作るかによって1と2が変化してきます</p>
+</section><section id="ioslidesでスライド作成" class="slide level2">
+<h1>ioslidesでスライド作成</h1>
+<ol type="1">
+<li>R Markdownファイルをダイアログボックスから作成
+<ul>
+<li><strong>Presentation</strong>に切り替える</li>
+<li><strong>ioslides(HTML)</strong>を選択してOK</li>
+</ul></li>
+</ol>
+<p><img src="pics/Rmd/make_rmd_ioslide.PNG" /></p>
+</section><section class="slide level2">
+
+<ol start="2" type="1">
+<li>内容を編集して<strong>Knit</strong>を実行</li>
+<li>こういうスライドができあがります</li>
+</ol>
+<p><img src="pics/Rmd/ioslides_capt.PNG" /></p>
+</section><section id="ioslidesの使い方" class="slide level2">
+<h1>ioslidesの使い方</h1>
+<ul>
+<li>スライド区切り
+<ul>
+<li>見出しレベル2<code>##</code>が各スライドのタイトル
+<ul>
+<li>レベル3以下はスライド内部の見出しとして処理</li>
+</ul></li>
+<li>見出しなしでのスライド区切りは<code>---</code>で</li>
+</ul></li>
+<li>セクション区切り
+<ul>
+<li>見出しレベル1<code>#</code>の見出しがセクション区切り</li>
+<li>スライド内コンテンツを入れても表示される</li>
+</ul></li>
+<li>いろんな機能がありますので、以下を参照してください
+<ul>
+<li><a href="http://rmarkdown.rstudio.com/ioslides_presentation_format.html">Presentations with ioslides</a></li>
+</ul></li>
+</ul>
 </section><section id="revealjsパッケージで作成" class="slide level2">
 <h1>revealjsパッケージで作成</h1>
+<ol type="1">
+<li>パッケージをインストール</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># CRANから</span>
+<span class="kw">install.packages</span>(<span class="st">&quot;revealjs&quot;</span>)
+<span class="co"># GitHubから</span>
+devtools::<span class="kw">install_github</span>(<span class="st">&quot;rstudio/revealjs&quot;</span>)
+<span class="co"># githubinstallパッケージでもok</span>
+githubinstall::<span class="kw">githubinstall</span>(<span class="st">&quot;revealjs&quot;</span>)</code></pre></div>
+</section><section class="slide level2">
+
+<ol start="2" type="1">
+<li>R Markdownファイルをダイアログボックスから作成
+<ul>
+<li><strong>From Template</strong>に切り替える</li>
+<li><strong>revealjs Presentation</strong>を選択してOK</li>
+</ul></li>
+</ol>
+<p><img src="pics/Rmd/make_rmd_revealjs.PNG" /></p>
+</section><section class="slide level2">
+
+<ol start="3" type="1">
+<li>内部を編集して<strong>Knit</strong>を実行</li>
+<li>こういうスライドができあがります</li>
+</ol>
+<p><img src="pics/Rmd/revealjs_capt.PNG" /></p>
+</section><section id="revealjsの使い方" class="slide level2">
+<h1>revealjsの使い方</h1>
+<ul>
+<li>水平スライド遷移のみ(1Dスライド)
+<ul>
+<li>見出しレベル2<code>##</code>でスライド区切り</li>
+<li>レベル1<code>#</code>は<strong>使用しないこと</strong></li>
+<li>タイトル無しスライド区切りは<code>---</code></li>
+</ul></li>
+<li>水平･垂直スライド遷移(2Dスライド)
+<ul>
+<li>見出しレベル1がセクション区切り</li>
+<li>見出しレベル2がスライド区切り</li>
+<li>同一セクションが縦に連なり、セクションが移る際右へ</li>
+<li>セクション見出しのスライドはタイトルのみ
+<ul>
+<li>何か書くと垂直が機能しなくなります</li>
+</ul></li>
+</ul></li>
+</ul>
+</section><section class="slide level2">
+
+<div class="column1">
+<ul>
+<li>テーマ切り替え
+<ul>
+<li>yamlヘッダを編集</li>
+<li>使えるのは“default”, “simple”, “sky”, “beige”, “selif”, “solarized”, “blood”, “moon”, “night”, “black”, “league”, “white”</li>
+</ul></li>
+</ul>
+</div>
+<div class="column2">
+<pre><code>---
+output:
+  revealjs::revealjs_presentation:
+    theme: sky
+---</code></pre>
+</div>
+</section><section class="slide level2">
+
+<div class="column1">
+<ul>
+<li>cssによる設定
+<ul>
+<li>cssファイルを準備</li>
+<li>yamlヘッダを編集</li>
+<li>cssのセレクタについては、実際のhtmlを見てみるのが速い</li>
+<li>楽したい方は<a href="http://qiita.com/kazutan/items/017bcdf5f9beedc170f1">こちら</a>に近い情報あり</li>
+</ul></li>
+</ul>
+</div>
+<div class="column2">
+<pre><code>---
+output:
+  revealjs::revealjs_presentation:
+    css: style.css
+---</code></pre>
+</div>
+</section><section class="slide level2">
+
+<ul>
+<li>その他、いろんなことができます
+<ul>
+<li>詳しくは本家のドキュメントを参照してください</li>
+<li><a href="https://github.com/rstudio/revealjs" class="uri">https://github.com/rstudio/revealjs</a></li>
+</ul></li>
+<li>ほぼ内容かぶりますが、昔まとめたのがこちらです
+<ul>
+<li><a href="https://kazutan.github.io/SappoRoR6/rmd_slide.html" class="uri">https://kazutan.github.io/SappoRoR6/rmd_slide.html</a></li>
+</ul></li>
+<li>あるいは、Twitterなどで私に直接聞いてください</li>
+</ul>
 </section></section>
-<section><section id="faq" class="titleslide slide level1"><h1>FAQ</h1></section></section>
-<section><section id="次のステップに進むには" class="titleslide slide level1"><h1>次のステップに進むには?</h1></section></section>
+<section><section id="faq" class="titleslide slide level1"><h1>FAQ</h1></section><section id="スライドが戻る進まない" class="slide level2">
+<h1>スライドが戻る(進まない)</h1>
+<ul>
+<li>見出しがかぶるとこういう症状が発生します
+<ul>
+<li>htmlの{#id}が自動生成されるときに重複するため</li>
+<li>これはPandocによる変換のときに付与されています
+<ul>
+<li>この自動付与のルールについては、Pandoc Markdownの仕様を確認してください</li>
+</ul></li>
+</ul></li>
+<li><strong>日本語&amp;半角英数字の見出しだと、半角英数字がかぶるだけで発生</strong>
+<ul>
+<li>{rmarkdown}がPandocに送る<a href="http://qiita.com/kazutan/items/eb15a42607f87f57b525">デフォルト設定</a>の仕様です</li>
+<li>正直つらい</li>
+</ul></li>
+</ul>
+</section><section class="slide level2">
+
+<ul>
+<li>回避策
+<ul>
+<li><p>htmlドキュメントの場合、以下のおまじないを入れておいてください</p>
+<pre><code>---
+output:
+  html_document:
+md_extensions: -ascii_identifiers
+---</code></pre></li>
+<li><p>revealjsの場合は以下のようにしてください</p>
+<pre><code>---
+output:
+  revealjs::revealjs_presentation:
+pandoc_args: [
+  &#39;--from&#39;, &#39;markdown+autolink_bare_uris+tex_math_single_backslash-implicit_figures&#39;
+]
+---</code></pre></li>
+<li><p>それでもうまくいかないときは、見出しを変更するか、以下のように`#idを手動で付与してください</p>
+<pre><code># ほげほげ{#hogehoge}</code></pre></li>
+</ul></li>
+</ul>
+</section><section id="スライドの縦が足りない" class="slide level2">
+<h1>スライドの縦が足りない</h1>
+<ul>
+<li>まずは1枚に収まるように内容を再考しましょう
+<ul>
+<li>**その内容は本当に必要ですか?</li>
+</ul></li>
+<li>どうしても必要なら…
+<ul>
+<li>適当なところで<code>---</code>を差し込んで複数に分ける</li>
+<li>slidyを使う</li>
+</ul></li>
+</ul>
+</section><section id="動的なコンテンツがおかしい" class="slide level2">
+<h1>動的なコンテンツがおかしい</h1>
+<ul>
+<li>htmlで出力してくるものが{revealjs}などのcssと干渉してくるため</li>
+<li><p>以下のおまじないをsetupチャンクに仕込んでください</p>
+<pre><code>knit_print.htmlwidget &lt;- function (widget, ..., options = NULL)
+{
+file &lt;- basename(tempfile(fileext = &quot;.html&quot;))
+selfcontained &lt;- if(is.null(rmarkdown::metadata$self_contained)) TRUE else rmarkdown::metadata$self_contained
+htmlwidgets::saveWidget(widget, file = file, selfcontained = selfcontained)
+content &lt;- if (selfcontained) {
+    on.exit(unlink(file), add = TRUE)
+    list(srcdoc = paste(readLines(file), collapse = &quot;\n&quot;)) 
+}
+else {
+    list(src = file)
+}
+x &lt;- htmltools::tag(&quot;iframe&quot;, content)
+knitr::knit_print(x, options = options, ...)
+}</code></pre></li>
+</ul>
+</section><section id="を追加したい" class="slide level2">
+<h1>○○を追加したい!</h1>
+<ul>
+<li>基本、html上で実現可能なものならすべて対応できます
+<ul>
+<li>Rmd(というかmd)はhtml直打ちに対応</li>
+</ul></li>
+<li>html_documentはjQueryとbootstrapを組み込んでる
+<ul>
+<li>これらで実現できることならわりと簡単にできる</li>
+</ul></li>
+<li>面倒だったら、直接私に聞いてください</li>
+</ul>
+</section><section id="インタラクティブな要素を組み込みたい" class="slide level2">
+<h1>インタラクティブな要素を組み込みたい</h1>
+<ul>
+<li>RにはShinyがあります
+<ul>
+<li>langtestはshinyです</li>
+<li>詳しくはshinyマスターへご相談ください</li>
+</ul></li>
+</ul>
+</section><section id="pythonでr-markdownみたいなのないの" class="slide level2">
+<h1>PythonでR Markdownみたいなのないの?</h1>
+<ul>
+<li>私の知る限り、ここまでのものは現在ありません
+<ul>
+<li>でも<strong>R Markdown上でPythonを実行できます</strong></li>
+<li>詳しくは以下を参照してください</li>
+<li><a href="http://rmarkdown.rstudio.com/authoring_knitr_engines.html" class="uri">http://rmarkdown.rstudio.com/authoring_knitr_engines.html</a></li>
+</ul></li>
+</ul>
+</section><section id="デフォルトで入ってくる文字列うざい" class="slide level2">
+<h1>デフォルトで入ってくる文字列うざい</h1>
+<ul>
+<li>Rmdのテンプレートを自作する方法が
+<ul>
+<li>詳しくは本家ドキュメントを</li>
+<li>ただし、Pandocの知識が必要 = 面倒だったら、<code>zousan::new_rmd_ja()</code>を</li>
+<li>自分用に作りました</li>
+<li>ただし、急に仕様変更使用することがあるので注意</li>
+</ul></li>
+</ul>
+</section><section id="チャンクを入れるのがめんどくさい" class="slide level2">
+<h1>チャンクを入れるのがめんどくさい</h1>
+<ul>
+<li>チャンクを入れるボタンがあります</li>
+<li>キーボードショートカットを活用
+<ul>
+<li>Ctrl/Cmd + Alt + I</li>
+</ul></li>
+<li>Knitにもキーボードショートカットあります
+<ul>
+<li>Ctrl/Cmd + Shift + K</li>
+</ul></li>
+<li>チャンク内コードを実行するショートカットも
+<ul>
+<li>Ctrl/Cmd + Shift + Enter</li>
+</ul></li>
+</ul>
+</section><section id="windowsだと文字化けしたりする" class="slide level2">
+<h1>Windowsだと文字化けしたりする</h1>
+<p><img src="pics/Rmd/why_are_you_using_SJIS.PNG" /></p>
+</section></section>
+<section><section id="次のステップに進むには" class="titleslide slide level1"><h1>次のステップに進むには?</h1></section><section id="まずはhtml_documentになれる" class="slide level2">
+<h1>まずはhtml_documentになれる</h1>
+<ul>
+<li>これが一番の基本です
+<ul>
+<li>公式ドキュメントを一度見てください</li>
+<li><a href="http://rmarkdown.rstudio.com/html_document_format.html" class="uri">http://rmarkdown.rstudio.com/html_document_format.html</a></li>
+</ul></li>
+<li>チャンクオプションやyamlについてはよく使うのをおさえればOK
+<ul>
+<li>わからなくなったら、RStudioのヘルプメニューへ
+<ul>
+<li>R Markdown CheatSheatが便利です</li>
+<li>R Markdown Reference Guideもいい感じです</li>
+</ul></li>
+</ul></li>
+</ul>
+</section><section id="pandocについて調べる" class="slide level2">
+<h1>Pandocについて調べる</h1>
+<ul>
+<li>R MarkdownはPandocを使ってmdを変換
+<ul>
+<li>よくも悪くもPandocの仕様が大きく影響</li>
+<li>文量が多いですが、以下を読むとかなり理解が進みます</li>
+<li><a href="http://sky-y.github.io/site-pandoc-jp/users-guide/" class="uri">http://sky-y.github.io/site-pandoc-jp/users-guide/</a>
+<ul>
+<li>実際、私はよくここでトラブルの解決策を探してます</li>
+</ul></li>
+</ul></li>
+</ul>
+</section><section id="cssとjavascriptを勉強する" class="slide level2">
+<h1>CSSとJavascriptを勉強する</h1>
+<ul>
+<li>htmlドキュメントはcssで書式設定
+<ul>
+<li>cssが使えるようになれば自由自在</li>
+<li>Bootstrapが標準で組み込まれている
+<ul>
+<li>あわせてこちらもチェックするとより便利に</li>
+</ul></li>
+</ul></li>
+<li>jsが使えると幅が広がる
+<ul>
+<li>動的なものも作れるように</li>
+<li>jQueryが標準で組み込まれている
+<ul>
+<li>あわせてこちらもチェックするとよりすごいことが</li>
+</ul></li>
+</ul></li>
+</ul>
+</section><section id="いろんな出力フォーマットを試す" class="slide level2">
+<h1>いろんな出力フォーマットを試す</h1>
+<ul>
+<li>docxドキュメントやpdf(tex)にも対応</li>
+<li>Webサイト構築も</li>
+<li>Blogも作れる</li>
+<li>電子書籍も作れる</li>
+</ul>
+</section><section id="enjoy" class="slide level2">
+<h1>Enjoy!</h1>
+</section></section>
     </div>
   </div>
 

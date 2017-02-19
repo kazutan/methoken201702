@@ -19,13 +19,6 @@ knitr::opts_chunk$set(echo = TRUE)
 library(DiagrammeR)
 ```
 
-```{css}
-@import url(//fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic);
-body{
-font-family:Avenir , "Open Sans" , "Helvetica Neue" , Helvetica , Arial , Verdana , Roboto , "游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , sans-serif;
-}
-```
-
 # はじめに
 
 ## 自己紹介
@@ -626,12 +619,302 @@ output:
 
 ## なぜR Markdownでスライドを作るのか?
 
-## ioslidesで作成
+- 先述したドキュメント生成のメリットは共通
+- スライドはアウトラインから起こすと作りやすい
+    - セクション、各スライドタイトル、コンテンツで構成
+    - シンプルなルールがそのまま適用できる
+- レイアウトやテーマ要素をいちいち考えなくていい
+    - ごてごてしたレイアウト、本当に必要?
+    - テーマはスライドで共通してるから全体設定すればOK
+
+## スライド作成のバリエーション
+
+- R Presentation
+    - RStudioに組み込まれたものでreveal.jsがベース
+    - **現状あまりおすすめしにくい**
+- ioslides
+    - rmarkdown標準で組み込み。結構きれい
+- slidy
+    - rmarkdown標準で組み込み。いまいち
+- beamer
+    - てふにしゃん御用達でpdfファイル形式
+- {revealjs}パッケージ
+    - 多機能、デザイン豊富、カスタマイズしやすい
+    - このスライドもこれで作ってます
+
+## Rmdでスライドを作るには
+
+以下のワークフローで進めます:
+
+1. スライド用のRmdファイルを新規で作成
+2. 内容を編集
+3. knitして確認
+4. 2と3を繰り返す
+5. 完成
+
+ほぼドキュメントのときと違いませんが、どれで作るかによって1と2が変化してきます
+
+## ioslidesでスライド作成
+
+1. R Markdownファイルをダイアログボックスから作成
+    - **Presentation**に切り替える
+    - **ioslides(HTML)**を選択してOK
+
+![](pics/Rmd/make_rmd_ioslide.PNG)
+
+***
+
+2. 内容を編集して**Knit**を実行
+3. こういうスライドができあがります
+
+![](pics/Rmd/ioslides_capt.PNG)
+
+## ioslidesの使い方
+
+- スライド区切り
+    - 見出しレベル2`##`が各スライドのタイトル
+        - レベル3以下はスライド内部の見出しとして処理
+    - 見出しなしでのスライド区切りは`---`で
+- セクション区切り
+    - 見出しレベル1`#`の見出しがセクション区切り
+    - スライド内コンテンツを入れても表示される
+- いろんな機能がありますので、以下を参照してください
+    - [Presentations with ioslides](http://rmarkdown.rstudio.com/ioslides_presentation_format.html)
 
 ## revealjsパッケージで作成
 
+1. パッケージをインストール
+
+```{r, eval=FALSE}
+# CRANから
+install.packages("revealjs")
+# GitHubから
+devtools::install_github("rstudio/revealjs")
+# githubinstallパッケージでもok
+githubinstall::githubinstall("revealjs")
+```
+
+***
+
+2. R Markdownファイルをダイアログボックスから作成
+    - **From Template**に切り替える
+    - **revealjs Presentation**を選択してOK
+
+![](pics/Rmd/make_rmd_revealjs.PNG)
+
+***
+
+3. 内部を編集して**Knit**を実行
+4. こういうスライドができあがります
+
+![](pics/Rmd/revealjs_capt.PNG)
+
+## revealjsの使い方
+
+- 水平スライド遷移のみ(1Dスライド)
+    - 見出しレベル2`##`でスライド区切り
+    - レベル1`#`は**使用しないこと**
+    - タイトル無しスライド区切りは`---`
+- 水平･垂直スライド遷移(2Dスライド)
+    - 見出しレベル1がセクション区切り
+    - 見出しレベル2がスライド区切り
+    - 同一セクションが縦に連なり、セクションが移る際右へ
+    - セクション見出しのスライドはタイトルのみ
+        - 何か書くと垂直が機能しなくなります
+
+***
+
+<div class="column1">
+- テーマ切り替え
+    - yamlヘッダを編集
+    - 使えるのは"default", "simple", "sky", "beige", "selif", "solarized", "blood", "moon", "night", "black", "league", "white"
+</div>
+<div class="column2">
+```
+---
+output:
+  revealjs::revealjs_presentation:
+    theme: sky
+---
+```
+</div>
+
+***
+
+<div class="column1">
+- cssによる設定
+    - cssファイルを準備
+    - yamlヘッダを編集
+    - cssのセレクタについては、実際のhtmlを見てみるのが速い
+    - 楽したい方は[こちら](http://qiita.com/kazutan/items/017bcdf5f9beedc170f1)に近い情報あり
+</div>
+<div class="column2">
+```
+---
+output:
+  revealjs::revealjs_presentation:
+    css: style.css
+---
+```
+</div>
+
+***
+
+- その他、いろんなことができます
+    - 詳しくは本家のドキュメントを参照してください
+    - https://github.com/rstudio/revealjs
+- ほぼ内容かぶりますが、昔まとめたのがこちらです
+    - https://kazutan.github.io/SappoRoR6/rmd_slide.html
+- あるいは、Twitterなどで私に直接聞いてください
 
 # FAQ
 
+## スライドが戻る(進まない)
+
+- 見出しがかぶるとこういう症状が発生します
+    - htmlの{#id}が自動生成されるときに重複するため
+    - これはPandocによる変換のときに付与されています
+        - この自動付与のルールについては、Pandoc Markdownの仕様を確認してください
+- **日本語&半角英数字の見出しだと、半角英数字がかぶるだけで発生**
+    - {rmarkdown}がPandocに送る[デフォルト設定](http://qiita.com/kazutan/items/eb15a42607f87f57b525)の仕様です
+    - 正直つらい
+
+***
+
+- 回避策
+    - htmlドキュメントの場合、以下のおまじないを入れておいてください
+    ```
+    ---
+    output:
+      html_document:
+        md_extensions: -ascii_identifiers
+    ---
+    ```
+    - revealjsの場合は以下のようにしてください
+    ```
+    ---
+    output:
+      revealjs::revealjs_presentation:
+        pandoc_args: [
+      '--from', 'markdown+autolink_bare_uris+tex_math_single_backslash-implicit_figures'
+    ]
+    ---
+    ```
+    - それでもうまくいかないときは、見出しを変更するか、以下のように`#idを手動で付与してください
+    ```
+    # ほげほげ{#hogehoge}
+    ```
+
+## スライドの縦が足りない
+
+- まずは1枚に収まるように内容を再考しましょう
+    - **その内容は本当に必要ですか?
+- どうしても必要なら…
+    - 適当なところで`---`を差し込んで複数に分ける
+    - slidyを使う
+
+## 動的なコンテンツがおかしい
+
+- htmlで出力してくるものが{revealjs}などのcssと干渉してくるため
+- 以下のおまじないをsetupチャンクに仕込んでください
+```
+knit_print.htmlwidget <- function (widget, ..., options = NULL)
+{
+    file <- basename(tempfile(fileext = ".html"))
+    selfcontained <- if(is.null(rmarkdown::metadata$self_contained)) TRUE else rmarkdown::metadata$self_contained
+    htmlwidgets::saveWidget(widget, file = file, selfcontained = selfcontained)
+    content <- if (selfcontained) {
+        on.exit(unlink(file), add = TRUE)
+        list(srcdoc = paste(readLines(file), collapse = "\n")) 
+    }
+    else {
+        list(src = file)
+    }
+    x <- htmltools::tag("iframe", content)
+    knitr::knit_print(x, options = options, ...)
+}
+```
+
+## ○○を追加したい!
+
+- 基本、html上で実現可能なものならすべて対応できます
+    - Rmd(というかmd)はhtml直打ちに対応
+- html_documentはjQueryとbootstrapを組み込んでる
+    - これらで実現できることならわりと簡単にできる
+- 面倒だったら、直接私に聞いてください
+
+## インタラクティブな要素を組み込みたい
+
+- RにはShinyがあります
+    - langtestはshinyです
+    - 詳しくはshinyマスターへご相談ください
+
+## PythonでR Markdownみたいなのないの?
+
+- 私の知る限り、ここまでのものは現在ありません
+    - でも**R Markdown上でPythonを実行できます**
+    - 詳しくは以下を参照してください
+    - http://rmarkdown.rstudio.com/authoring_knitr_engines.html
+
+## デフォルトで入ってくる文字列うざい
+
+- Rmdのテンプレートを自作する方法が
+    - 詳しくは本家ドキュメントを
+    - ただし、Pandocの知識が必要
+= 面倒だったら、`zousan::new_rmd_ja()`を
+    - 自分用に作りました
+    - ただし、急に仕様変更使用することがあるので注意
+
+## チャンクを入れるのがめんどくさい
+
+- チャンクを入れるボタンがあります
+- キーボードショートカットを活用
+    - Ctrl/Cmd + Alt + I
+- Knitにもキーボードショートカットあります
+    - Ctrl/Cmd + Shift + K
+- チャンク内コードを実行するショートカットも
+    - Ctrl/Cmd + Shift + Enter
+
+## Windowsだと文字化けしたりする
+
+![](pics/Rmd/why_are_you_using_SJIS.PNG)
 
 # 次のステップに進むには?
+
+## まずはhtml_documentになれる
+
+- これが一番の基本です
+    - 公式ドキュメントを一度見てください
+    - http://rmarkdown.rstudio.com/html_document_format.html
+- チャンクオプションやyamlについてはよく使うのをおさえればOK
+    - わからなくなったら、RStudioのヘルプメニューへ
+        - R Markdown CheatSheatが便利です
+        - R Markdown Reference Guideもいい感じです
+
+## Pandocについて調べる
+
+- R MarkdownはPandocを使ってmdを変換
+    - よくも悪くもPandocの仕様が大きく影響
+    - 文量が多いですが、以下を読むとかなり理解が進みます
+    - http://sky-y.github.io/site-pandoc-jp/users-guide/
+        - 実際、私はよくここでトラブルの解決策を探してます
+
+## CSSとJavascriptを勉強する
+
+- htmlドキュメントはcssで書式設定
+    - cssが使えるようになれば自由自在
+    - Bootstrapが標準で組み込まれている
+        - あわせてこちらもチェックするとより便利に
+- jsが使えると幅が広がる
+    - 動的なものも作れるように
+    - jQueryが標準で組み込まれている
+        - あわせてこちらもチェックするとよりすごいことが
+
+## いろんな出力フォーマットを試す
+
+- docxドキュメントやpdf(tex)にも対応
+- Webサイト構築も
+- Blogも作れる
+- 電子書籍も作れる
+
+## Enjoy!
